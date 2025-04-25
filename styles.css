@@ -238,7 +238,7 @@ a:focus-visible, .toggle-detail:focus-visible {
 }
 
 .card:hover {
-  box-shadow: 0 0 15px #00000080;
+  transform: scale(1.01);
 }
 
 .card.active {
