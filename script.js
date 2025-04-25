@@ -1,35 +1,43 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const sections = document.querySelectorAll('.portfolio-section');
+document.addEventListener('DOMContentLoaded', () => {
+  // Fecha todos os detalhes dentro de uma seção
+  function collapseSection(section) {
+    const toggles = section.querySelectorAll('.toggle-detail');
+    const details = section.querySelectorAll('.detail');
+    toggles.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+    details.forEach(d => d.hidden = true);
+    section.querySelectorAll('.card, .project-card, .production-card')
+      .forEach(c => c.classList.remove('active'));
+  }
 
-  sections.forEach(section => {
-    const wrappers = section.querySelectorAll('.card-wrapper');
+  // Para cada seção do portfólio que tenha toggles…
+  document.querySelectorAll('.portfolio-section').forEach(section => {
+    const toggles = section.querySelectorAll('.toggle-detail');
+    if (toggles.length === 0) return;
 
-    wrappers.forEach(wrapper => {
-      const cards = wrapper.querySelectorAll('.card');
-      const details = wrapper.querySelectorAll('.detail');
+    // Inicia tudo fechado
+    collapseSection(section);
 
-      cards.forEach((card, index) => {
-        card.addEventListener('click', () => {
-          details.forEach(detail => {
-            detail.style.display = 'none';
-          });
+    // Adiciona listener a cada botão “Ver detalhes”
+    toggles.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const detail = document.getElementById(btn.getAttribute('aria-controls'));
+        const card = btn.closest('.card, .project-card, .production-card');
 
-          details[index].style.display = 'block';
+        if (isExpanded) {
+          // Se já está aberto, fecha
+          btn.setAttribute('aria-expanded', 'false');
+          if (detail) detail.hidden = true;
+          if (card) card.classList.remove('active');
+        } else {
+          // Fecha todos antes de abrir o clicado
+          collapseSection(section);
 
-          cards.forEach((btn, btnIndex) => {
-            if (index === btnIndex) {
-              btn.classList.add('active');
-            } else {
-              btn.classList.remove('active');
-            }
-          });
-        });
+          btn.setAttribute('aria-expanded', 'true');
+          if (detail) detail.hidden = false;
+          if (card) card.classList.add('active');
+        }
       });
-
-      if (cards.length > 0) {
-        details[0].style.display = 'block';
-        cards[0].classList.add('active');
-      }
     });
   });
 });
