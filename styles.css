@@ -246,6 +246,12 @@ a:focus {
 }
 
 /* Projetos e Produções */
+
+#projects h3, #production h3{
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 1.5rem 0 1rem 0;
+}
 .project-card,
 .production-card {
   background-color: #2d2e32;
@@ -259,6 +265,7 @@ a:focus {
 .production-card:hover {
   transform: scale(1.01);
 }
+
 .project-card h4,
 .production-card h4 {
   font-size: 1.25rem;
