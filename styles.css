@@ -197,7 +197,7 @@ a:focus {
   box-shadow: 0 0 15px #00000080;
 }
 .card.active {
-  background-color: var(--accent);
+  border-left: 5px solid var(--accent);
 }
 .card h3 {
   margin-bottom: 0.25rem;
@@ -207,10 +207,6 @@ a:focus {
 .card p {
   font-size: 0.9rem;
   color: #ccc;
-}
-.card.active p {
-  color: #000;
-  font-weight: 500;
 }
 
 /* Botão de detalhes */
@@ -228,6 +224,7 @@ a:focus {
   outline: 2px dotted var(--accent);
   outline-offset: 2px;
 }
+
 .detail {
   flex: 2;
   padding: var(--spacing);
@@ -260,6 +257,7 @@ a:focus {
   border-radius: var(--radius);
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
+  margin-bottom: 0.5rem;
 }
 .project-card:hover,
 .production-card:hover {
