@@ -1,36 +1,162 @@
-/* 1. Variáveis de cor e fonte */
 :root {
-  --bg: #0f0f0f;
+  /* Cores principais */
+  --bg: #1b1b1b;
   --card-bg: rgba(26, 26, 26, 0.85);
-  --accent: #ff007f;
-  --accent-hover: #e6006e;
+  --accent: #7d57a7;
+  --accent-hover: #5e348b;
   --text: #fafafa;
   --text-muted: #aaa;
-  --font: 'Arial', sans-serif;
+
+  /* Tipografia */
+  --font-base: 'Arial', sans-serif;
+  --font-size-base: 1rem;
 }
 
-* {
+/* 2. Reset e Box Sizing */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* 3. Estilos base (Body, Links) */
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 80px;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 4. Header e Navegação */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(22, 22, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* suporte para Safari */
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover,
+.nav a:focus {
+  color: var(--accent); /* cor de destaque ao passar o mouse */
+}
+
+
+/* 5. Layout Principal (Grid / Flex) */
 .container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   padding: 1rem;
   max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-section {
+  width: 100%;
+  padding: 3rem;
+  border-radius: 12px;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #222222
+}
+
+#about {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.about-text{
+  flex: 1 1 60%;
+}
+
+#foto-evandro {
+  flex: 1 1 200px;
+  max-width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.education-card {
+  background-color: #2d2e32;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.education-card:hover {
+  transform: scale(1.01);
+}
+
+.education-card h3 {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.education-card p {
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 .profile-section {
@@ -38,6 +164,177 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.portfolio-section h2 {
+  font-size: 2rem;
+  color: var(--accent);
+  margin: 2rem 0 1.5rem 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.experience {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+  display: flex;
+  gap: 2rem;
+}
+
+.card-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start; 
+}
+.card-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  max-width: 80%;
+  min-height: 150px;
+  background-color: #2d2e32;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 25px #00000040;
+  transition: 0.5s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 15px #00000080;
+  cursor: pointer;
+}
+
+.card.active {
+  background-color: var(--accent);
+}
+
+.card p {
+  margin-top: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.card.active p {
+  color: #000000;
+  font-weight: 500;
+}
+
+.card div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.card:hover div {
+  color: var(--accent-hover);
+}
+
+.card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.card div h3 {
+  font-weight: 500;
+}
+
+.card:hover div h3 {
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #7c7d81;
+}
+
+.detail {
+  flex: 2;
+  display: block;
+  min-width: 0; 
+  transition: opacity 0.3s ease;
+  line-height: 1.6;
+}
+
+.detail p:nth-child(1) {
+  font-size: 14px;
+  color: #7c7d81;
+  font-weight: 800;
+}
+
+.detail h2 {
+  margin: 20px 0;
+}
+
+.detail p {
+  font-size: 18px;
+  color: #7c7d81;
+  font-weight: 600;
+}
+
+.detail ul{
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.detail ul li {
+  margin-bottom: 0.5rem;
+}
+
+.detail strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.subtitle{
+  font-size: 1.5rem;
+  color: white;
+  margin: 0.5rem 0 1.5rem 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.production-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.production-card {
+  background-color: #2d2e32;
+  padding: 1.5rem;
+  border-left: 5px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.production-card:hover {
+  transform: scale(1.01);
+}
+
+.production-card h3 {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.production-card p {
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 
@@ -106,7 +403,7 @@ textarea::placeholder {
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 0, 127, 0.4);
+  box-shadow: 0 0 0 3px var(--accent-hover);
 }
 
 textarea:focus {
@@ -115,7 +412,7 @@ textarea:focus {
   resize: none;
   overflow: auto;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 0, 127, 0.4);
+  box-shadow: 0 0 0 3px --accent-hover;
 }
 
 .submit-button {
@@ -132,14 +429,14 @@ textarea:focus {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(255, 0, 127, 0.2);
+  box-shadow: 0 8px 24px var(--accent-hover);
   transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
 }
 
 .submit-button:hover {
   background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(255, 0, 127, 0.3);
+  box-shadow: 0 12px 32px var(--accent-hover);
 }
 
 @media (max-width: 768px) {
