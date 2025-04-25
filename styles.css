@@ -137,7 +137,7 @@ a:focus-visible, .toggle-detail:focus-visible {
 }
 
 /* SOBRE */
-#about {
+.about-content {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
@@ -145,7 +145,27 @@ a:focus-visible, .toggle-detail:focus-visible {
 }
 
 .about-text {
-  flex: 1 1 60%;
+  flex: 2 1 60%;
+}
+
+.about-card{
+  background-color: #2d2e32;
+  padding: var(--spacing-lg);
+  margin-top: 10px;
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.about-card:hover {
+  transform: scale(1.01);
+}
+
+.about-text h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 #foto-evandro {
@@ -222,7 +242,7 @@ a:focus-visible, .toggle-detail:focus-visible {
 }
 
 .card.active {
-  background-color: var(--accent);
+  border-left: 5px solid var(--accent);
 }
 
 .card h3,
@@ -276,6 +296,12 @@ a:focus-visible, .toggle-detail:focus-visible {
 }
 
 /* PROJETOS & PRODUÇÕES */
+#projects h3, #production h3{
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 1.5rem 0 1rem 0;
+}
+
 .project-card,
 .production-card {
   background-color: #2d2e32;
@@ -285,6 +311,7 @@ a:focus-visible, .toggle-detail:focus-visible {
   border-radius: var(--radius);
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
+  margin-bottom: 0.5rem;
 }
 
 .project-card:hover,
